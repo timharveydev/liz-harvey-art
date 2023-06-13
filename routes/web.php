@@ -17,7 +17,7 @@ use Inertia\Inertia;
 */
 
 Route::get('/', [HomepageController::class, 'index'])
-    ->name('homepage.index');
+    ->name('homepage');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

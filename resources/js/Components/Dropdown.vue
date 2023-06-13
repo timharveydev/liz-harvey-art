@@ -8,7 +8,7 @@ const props = defineProps({
     },
     width: {
         type: String,
-        default: '48',
+        default: '40',
     },
     contentClasses: {
         type: String,
@@ -27,7 +27,7 @@ onUnmounted(() => document.removeEventListener('keydown', closeOnEscape));
 
 const widthClass = computed(() => {
     return {
-        48: 'w-48',
+        40: 'w-40',
     }[props.width.toString()];
 });
 
@@ -68,7 +68,7 @@ const open = ref(false);
                 style="display: none"
                 @click="open = false"
             >
-                <div class="rounded-md ring-1 ring-black ring-opacity-5" :class="contentClasses">
+                <div class="rounded-sm ring-1 ring-black ring-opacity-5" :class="contentClasses">
                     <slot name="content" />
                 </div>
             </div>
