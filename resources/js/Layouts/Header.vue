@@ -47,7 +47,11 @@ const menuIsOpen = ref(false);
                         <DropdownLink :href="route('profile.edit')">
                             Profile
                         </DropdownLink>
-                        <DropdownLink :href="route('logout')" method="post" as="button">
+                        <DropdownLink
+                            :href="route('logout')"
+                            method="post"
+                            as="button"
+                        >
                             Log Out
                         </DropdownLink>
                     </template>
@@ -71,17 +75,32 @@ const menuIsOpen = ref(false);
                         <DropdownLink :href="route('profile.edit')">
                             Profile
                         </DropdownLink>
-                        <DropdownLink :href="route('logout')" method="post" as="button">
+                        <DropdownLink
+                            :href="route('logout')"
+                            method="post"
+                            as="button"
+                        >
                             Log Out
                         </DropdownLink>
                     </template>
                 </Dropdown>
 
-                <MenuBarsIcon v-show="!menuIsOpen" @click="menuIsOpen = !menuIsOpen" class="h-8 cursor-pointer" />
-                <CrossIcon v-show="menuIsOpen" @click="menuIsOpen = !menuIsOpen" class="h-8 cursor-pointer" />
+                <MenuBarsIcon
+                    v-show="!menuIsOpen"
+                    @click="menuIsOpen = !menuIsOpen"
+                    class="h-8 cursor-pointer"
+                />
+                <CrossIcon
+                    v-show="menuIsOpen"
+                    @click="menuIsOpen = !menuIsOpen"
+                    class="h-8 cursor-pointer"
+                />
             </div>
 
-            <div v-show="menuIsOpen" class="absolute left-0 top-0 w-full mt-20 pb-6 bg-gray-900 text-white flex flex-col">
+            <div
+                v-show="menuIsOpen"
+                class="absolute left-0 top-0 w-full mt-20 pb-6 bg-gray-900 text-white flex flex-col"
+            >
                 <Link :href="route('homepage')" class="text-center py-4">
                     Gallery
                 </Link>
