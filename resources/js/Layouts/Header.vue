@@ -4,6 +4,9 @@ import ApplicationLogo from "@/Components/ApplicationLogo.vue";
 import AccountIcon from "@/Components/AccountIcon.vue";
 import Dropdown from "@/Components/Dropdown.vue";
 import DropdownLink from "@/Components/DropdownLink.vue";
+import MenuBarsIcon from "@/Components/MenuIcon.vue";
+import {ref} from "vue";
+import CrossIcon from "@/Components/CrossIcon.vue";
 
 defineProps({
     userIsLoggedIn: {
@@ -11,13 +14,15 @@ defineProps({
         required: true,
     }
 })
+
+const menuIsOpen = ref(false);
 </script>
 
 <template>
-    <header class="bg-gray-900 text-white">
+    <header class="bg-gray-900 text-white relative">
 
         <!-- Desktop Nav -->
-        <nav class="flex justify-between px-12 py-8">
+        <nav class="hidden lg:flex justify-between px-12 py-8">
             <Link :href="route('homepage')">
                 <ApplicationLogo />
             </Link>
@@ -35,7 +40,7 @@ defineProps({
 
                 <Dropdown v-if="userIsLoggedIn" class="cursor-pointer">
                     <template #trigger>
-                        <AccountIcon class="h-8 hover:text-slate-300"/>
+                        <AccountIcon class="h-8 hover:text-slate-300" />
                     </template>
 
                     <template #content>
@@ -51,5 +56,42 @@ defineProps({
         </nav>
 
         <!-- Mobile Nav -->
+        <nav class="flex lg:hidden justify-between p-6">
+            <Link :href="route('homepage')">
+                <ApplicationLogo />
+            </Link>
+
+            <div class="flex gap-6 leading-8 text-lg">
+                <Dropdown v-if="userIsLoggedIn" class="cursor-pointer">
+                    <template #trigger>
+                        <AccountIcon class="h-8" />
+                    </template>
+
+                    <template #content>
+                        <DropdownLink :href="route('profile.edit')">
+                            Profile
+                        </DropdownLink>
+                        <DropdownLink :href="route('logout')" method="post" as="button">
+                            Log Out
+                        </DropdownLink>
+                    </template>
+                </Dropdown>
+
+                <MenuBarsIcon v-show="!menuIsOpen" @click="menuIsOpen = !menuIsOpen" class="h-8 cursor-pointer" />
+                <CrossIcon v-show="menuIsOpen" @click="menuIsOpen = !menuIsOpen" class="h-8 cursor-pointer" />
+            </div>
+
+            <div v-show="menuIsOpen" class="absolute left-0 top-0 w-full mt-20 pb-6 bg-gray-900 text-white flex flex-col">
+                <Link :href="route('homepage')" class="text-center py-4">
+                    Gallery
+                </Link>
+                <Link :href="route('homepage')" class="text-center py-4">
+                    About
+                </Link>
+                <Link :href="route('homepage')" class="text-center py-4">
+                    Contact
+                </Link>
+            </div>
+        </nav>
     </header>
 </template>
