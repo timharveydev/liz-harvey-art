@@ -19,7 +19,7 @@ const menuIsOpen = ref(false);
 </script>
 
 <template>
-    <header class="bg-gray-900 text-white relative">
+    <header class="bg-gray-900 text-white">
 
         <!-- Desktop Nav -->
         <nav class="hidden lg:flex justify-between px-12 py-8">
