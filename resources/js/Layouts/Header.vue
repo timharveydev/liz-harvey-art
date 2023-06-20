@@ -19,7 +19,7 @@ const menuIsOpen = ref(false);
 </script>
 
 <template>
-    <header class="bg-gray-900 text-white">
+    <header class="bg-black text-white fixed top-0 left-0 w-full">
 
         <!-- Desktop Nav -->
         <nav class="hidden lg:flex justify-between px-12 py-8">
@@ -60,7 +60,7 @@ const menuIsOpen = ref(false);
         </nav>
 
         <!-- Mobile Nav -->
-        <nav class="flex lg:hidden justify-between p-6">
+        <nav class="flex lg:hidden justify-between px-6 py-4">
             <Link :href="route('homepage')">
                 <ApplicationLogo />
             </Link>
@@ -99,7 +99,7 @@ const menuIsOpen = ref(false);
 
             <div
                 v-show="menuIsOpen"
-                class="absolute left-0 top-0 w-full mt-20 pb-6 bg-gray-900 text-white flex flex-col"
+                class="absolute left-0 top-0 w-full mt-16 pb-6 bg-black text-white flex flex-col"
             >
                 <Link :href="route('homepage')" class="text-center py-4">
                     Gallery
