@@ -6,10 +6,6 @@ defineProps({
     text: {
         type: String,
         required: true,
-    },
-    userIsLoggedIn: {
-        type: Boolean,
-        required: true,
     }
 });
 </script>
@@ -17,7 +13,7 @@ defineProps({
 <template>
     <Head title="Home" />
 
-    <MainLayout :user-is-logged-in="userIsLoggedIn">
+    <MainLayout>
         <h1>{{ text }}</h1>
     </MainLayout>
 </template>

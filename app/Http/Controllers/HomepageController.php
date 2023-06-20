@@ -17,7 +17,6 @@ class HomepageController extends Controller
     public function index(): Response
     {
         return Inertia::render('Homepage', [
-            'userIsLoggedIn' => Auth::check(),
             'text' => 'Hello World!'
         ]);
     }

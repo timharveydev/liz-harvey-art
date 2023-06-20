@@ -4,18 +4,11 @@ import ApplicationLogo from "@/Components/ApplicationLogo.vue";
 import AccountIcon from "@/Components/AccountIcon.vue";
 import Dropdown from "@/Components/Dropdown.vue";
 import DropdownLink from "@/Components/DropdownLink.vue";
-import MenuBarsIcon from "@/Components/MenuIcon.vue";
-import {ref} from "vue";
+import MenuIcon from "@/Components/MenuIcon.vue";
 import CrossIcon from "@/Components/CrossIcon.vue";
+import { ref } from "vue";
 
-defineProps({
-    userIsLoggedIn: {
-        type: Boolean,
-        required: true,
-    }
-})
-
-const menuIsOpen = ref(false);
+const menuActive = ref(false);
 </script>
 
 <template>
@@ -38,7 +31,7 @@ const menuIsOpen = ref(false);
                     Contact
                 </Link>
 
-                <Dropdown v-if="userIsLoggedIn" class="cursor-pointer">
+                <Dropdown v-if="$page.props.auth.user" class="cursor-pointer">
                     <template #trigger>
                         <AccountIcon class="h-8 hover:text-slate-300" />
                     </template>
@@ -66,7 +59,7 @@ const menuIsOpen = ref(false);
             </Link>
 
             <div class="flex gap-6 leading-8 text-lg">
-                <Dropdown v-if="userIsLoggedIn" class="cursor-pointer">
+                <Dropdown v-if="$page.props.auth.user" class="cursor-pointer">
                     <template #trigger>
                         <AccountIcon class="h-8" />
                     </template>
@@ -85,20 +78,20 @@ const menuIsOpen = ref(false);
                     </template>
                 </Dropdown>
 
-                <MenuBarsIcon
-                    v-show="!menuIsOpen"
-                    @click="menuIsOpen = !menuIsOpen"
+                <MenuIcon
+                    v-show="!menuActive"
+                    @click="menuActive = !menuActive"
                     class="h-8 cursor-pointer"
                 />
                 <CrossIcon
-                    v-show="menuIsOpen"
-                    @click="menuIsOpen = !menuIsOpen"
+                    v-show="menuActive"
+                    @click="menuActive = !menuActive"
                     class="h-8 cursor-pointer"
                 />
             </div>
 
             <div
-                v-show="menuIsOpen"
+                v-show="menuActive"
                 class="absolute left-0 top-0 w-full mt-16 pb-6 bg-black text-white flex flex-col"
             >
                 <Link :href="route('homepage')" class="text-center py-4">
