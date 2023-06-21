@@ -3,9 +3,17 @@ import { Head } from '@inertiajs/vue3';
 import MainLayout from "@/Layouts/MainLayout.vue";
 
 defineProps({
-    text: {
+    bgImage: {
         type: String,
-        required: true,
+        required: true
+    },
+    byline: {
+        type: String,
+        required: false
+    },
+    pageHeading: {
+        type: String,
+        required: true
     }
 });
 </script>
@@ -13,7 +21,8 @@ defineProps({
 <template>
     <Head title="Home" />
 
-    <MainLayout>
-        <h1>{{ text }}</h1>
+    <MainLayout :bg-image="bgImage" :bg-brightness="75">
+        <span v-if="byline">{{ byline }}</span>
+        <h1>{{ pageHeading }}</h1>
     </MainLayout>
 </template>

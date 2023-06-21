@@ -12,7 +12,7 @@ const menuActive = ref(false);
 </script>
 
 <template>
-    <header class="bg-black text-white fixed top-0 left-0 w-full">
+    <header class="bg-black text-white fixed top-0 left-0 w-full z-50">
 
         <!-- Desktop Nav -->
         <nav class="hidden lg:flex justify-between px-12 py-8">

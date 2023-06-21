@@ -17,7 +17,9 @@ class HomepageController extends Controller
     public function index(): Response
     {
         return Inertia::render('Homepage', [
-            'text' => 'Hello World!'
+            'bgImage' => 'sample.jpg',
+            'byline' => 'Artwork by',
+            'pageHeading' => 'Liz Harvey'
         ]);
     }
 }
