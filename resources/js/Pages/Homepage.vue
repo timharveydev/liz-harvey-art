@@ -22,7 +22,9 @@ defineProps({
     <Head title="Home" />
 
     <MainLayout :bg-image="bgImage" :bg-brightness="75">
-        <span v-if="byline">{{ byline }}</span>
-        <h1>{{ pageHeading }}</h1>
+        <div class="h-full flex flex-col justify-center items-center text-center">
+            <span v-if="byline" class="text-xl sm:text-2xl mb-2">{{ byline }}</span>
+            <h1 class="font-serif text-6xl sm:text-7xl lg:text-8xl mb-8">{{ pageHeading }}</h1>
+        </div>
     </MainLayout>
 </template>
