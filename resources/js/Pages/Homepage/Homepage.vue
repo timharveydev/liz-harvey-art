@@ -35,6 +35,7 @@ const modalActive = ref(false);
             class="h-full flex flex-col justify-center items-center text-center relative"
         >
             <EditPageButton
+                v-if="$page.props.auth.user"
                 class="absolute top-6 lg:top-10 left-0"
                 @click="modalActive = true"
             >
