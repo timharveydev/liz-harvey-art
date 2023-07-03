@@ -10,9 +10,10 @@ defineProps({
     bgBrightness: {
         type: Number,
         required: false,
-        default: 50
+        default: .5
     }
 });
+
 </script>
 
 <template>
@@ -20,11 +21,11 @@ defineProps({
 
     <div
         class="text-white w-full h-screen bg-center bg-cover"
-        :class="`bg-[url('/storage/uploads/${bgImage}')]`"
+        :style="`background-image: url('/storage/uploads/${bgImage}')`"
     >
         <div
             class="w-full h-full py-16 lg:py-24 px-6 lg:px-12 overflow-y-auto"
-            :class="`backdrop-brightness-${bgBrightness}`"
+            :style="`backdrop-filter: brightness(${bgBrightness})`"
         >
             <slot />
         </div>

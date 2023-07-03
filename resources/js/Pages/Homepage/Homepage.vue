@@ -30,7 +30,7 @@ const modalActive = ref(false);
 <template>
     <Head title="Home" />
 
-    <MainLayout :bg-image="bgImage" :bg-brightness="75">
+    <MainLayout :bg-image="bgImage" :bg-brightness=".75">
         <div
             class="h-full flex flex-col justify-center items-center text-center relative"
         >
