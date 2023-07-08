@@ -15,9 +15,9 @@ return new class extends Migration
         Schema::create('pages', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('pre_title')->nullable();
-            $table->string('title')->nullable();
-            $table->text('description')->nullable();
+            $table->string('pre_heading')->nullable();
+            $table->string('main_heading')->nullable();
+            $table->text('text_block')->nullable();
             $table->string('featured_image')->nullable();
             $table->string('etsy_url')->nullable();
             $table->string('facebook_url')->nullable();
@@ -25,14 +25,14 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        // Insert page rows with initial values
+        // Insert page rows with initial placeholder values
         DB::table('pages')->insert(
             [
                 [
                     'name' => 'home',
-                    'pre_title' => 'Artwork by',
-                    'title' => 'Liz Harvey',
-                    'description' => null,
+                    'pre_heading' => 'Artwork by',
+                    'main_heading' => 'Liz Harvey',
+                    'text_block' => null,
                     'featured_image' => null,
                     'etsy_url' => null,
                     'facebook_url' => null,
@@ -40,9 +40,9 @@ return new class extends Migration
                 ],
                 [
                     'name' => 'gallery',
-                    'pre_title' => null,
-                    'title' => null,
-                    'description' => null,
+                    'pre_heading' => null,
+                    'main_heading' => null,
+                    'text_block' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla auctor non leo viverra volutpat. Praesent luctus tortor dolor, eget mollis est mollis nec. Aliquam erat volutpat. Etiam in ipsum hendrerit, lacinia massa in, lobortis augue. Donec ac imperdiet lacus. Morbi efficitur cursus dui at vulputate. Nulla posuere sapien felis, eu aliquam magna dignissim a. Duis convallis aliquam augue, sit amet tempus felis auctor at. Aliquam vitae elementum risus, venenatis porttitor justo.',
                     'featured_image' => null,
                     'etsy_url' => null,
                     'facebook_url' => null,
@@ -50,9 +50,9 @@ return new class extends Migration
                 ],
                 [
                     'name' => 'about',
-                    'pre_title' => null,
-                    'title' => null,
-                    'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla auctor non leo viverra volutpat. Praesent luctus tortor dolor, eget mollis est mollis nec. Aliquam erat volutpat. Etiam in ipsum hendrerit, lacinia massa in, lobortis augue. Donec ac imperdiet lacus. Morbi efficitur cursus dui at vulputate. Nulla posuere sapien felis, eu aliquam magna dignissim a. Duis convallis aliquam augue, sit amet tempus felis auctor at. Aliquam vitae elementum risus, venenatis porttitor justo.',
+                    'pre_heading' => null,
+                    'main_heading' => null,
+                    'text_block' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla auctor non leo viverra volutpat. Praesent luctus tortor dolor, eget mollis est mollis nec. Aliquam erat volutpat. Etiam in ipsum hendrerit, lacinia massa in, lobortis augue. Donec ac imperdiet lacus. Morbi efficitur cursus dui at vulputate. Nulla posuere sapien felis, eu aliquam magna dignissim a. Duis convallis aliquam augue, sit amet tempus felis auctor at. Aliquam vitae elementum risus, venenatis porttitor justo.',
                     'featured_image' => 'placeholder.jpg',
                     'etsy_url' => null,
                     'facebook_url' => null,
@@ -60,9 +60,9 @@ return new class extends Migration
                 ],
                 [
                     'name' => 'contact',
-                    'pre_title' => null,
-                    'title' => null,
-                    'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla auctor non leo viverra volutpat. Praesent luctus tortor dolor, eget mollis est mollis nec. Aliquam erat volutpat. Etiam in ipsum hendrerit, lacinia massa in, lobortis augue. Donec ac imperdiet lacus. Morbi efficitur cursus dui at vulputate. Nulla posuere sapien felis, eu aliquam magna dignissim a. Duis convallis aliquam augue, sit amet tempus felis auctor at. Aliquam vitae elementum risus, venenatis porttitor justo.',
+                    'pre_heading' => null,
+                    'main_heading' => null,
+                    'text_block' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla auctor non leo viverra volutpat. Praesent luctus tortor dolor, eget mollis est mollis nec. Aliquam erat volutpat. Etiam in ipsum hendrerit, lacinia massa in, lobortis augue. Donec ac imperdiet lacus. Morbi efficitur cursus dui at vulputate. Nulla posuere sapien felis, eu aliquam magna dignissim a. Duis convallis aliquam augue, sit amet tempus felis auctor at. Aliquam vitae elementum risus, venenatis porttitor justo.',
                     'featured_image' => null,
                     'etsy_url' => null,
                     'facebook_url' => null,
