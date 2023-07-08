@@ -16,8 +16,11 @@ use Inertia\Inertia;
 |
 */
 
+// Homepage
 Route::get('/', [HomepageController::class, 'index'])
     ->name('homepage');
+Route::patch('/', [HomepageController::class, 'update'])
+    ->name('homepage.update');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

@@ -10,16 +10,8 @@ import PrimaryButton from "@/Components/PrimaryButton.vue";
 import InputLabel from "@/Components/InputLabel.vue";
 
 defineProps({
-    bgImage: {
-        type: String,
-        required: true
-    },
-    byline: {
-        type: String,
-        required: false
-    },
-    pageHeading: {
-        type: String,
+    pageData: {
+        type: Object,
         required: true
     }
 });
@@ -30,7 +22,7 @@ const modalActive = ref(false);
 <template>
     <Head title="Home" />
 
-    <MainLayout :bg-image="bgImage" :bg-brightness=".75">
+    <MainLayout :bg-brightness=".75">
         <div
             class="h-full flex flex-col justify-center items-center text-center relative"
         >
@@ -42,12 +34,12 @@ const modalActive = ref(false);
                 Edit this page
             </EditPageButton>
 
-            <span v-if="byline" class="text-xl sm:text-2xl mb-2">
-                {{ byline }}
+            <span v-if="pageData.pre_heading" class="text-xl sm:text-2xl mb-2">
+                {{ pageData.pre_heading }}
             </span>
 
             <h1 class="font-serif text-6xl sm:text-7xl lg:text-8xl mb-8">
-                {{ pageHeading }}
+                {{ pageData.main_heading }}
             </h1>
 
             <Modal :show="modalActive" @close="modalActive = false">
@@ -74,8 +66,8 @@ const modalActive = ref(false);
                     <InputLabel>
                         Byline
                         <span class="text-gray-400 text-sm">
-                (Optional)
-            </span>
+                            (Optional)
+                        </span>
                     </InputLabel>
                     <TextInput
                         model-value=""

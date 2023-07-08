@@ -3,10 +3,6 @@ import Header from "@/Layouts/Header.vue";
 import Footer from "@/Layouts/Footer.vue";
 
 defineProps({
-    bgImage: {
-        type: String,
-        required: true
-    },
     bgBrightness: {
         type: Number,
         required: false,
@@ -21,7 +17,7 @@ defineProps({
 
     <div
         class="text-white w-full h-screen bg-center bg-cover"
-        :style="`background-image: url('/storage/uploads/${bgImage}')`"
+        style="background-image: url('/storage/uploads/background.jpg')"
     >
         <div
             class="w-full h-full py-16 lg:py-24 px-6 lg:px-12 overflow-y-auto"
