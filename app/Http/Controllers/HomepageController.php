@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\HomepageUpdateRequest;
 use App\Models\Page;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -18,5 +21,18 @@ class HomepageController extends Controller
         return Inertia::render('Homepage', [
             'pageData' => $pageData,
         ]);
+    }
+
+    /**
+     * Update the Homepage.
+     */
+    public function update(HomepageUpdateRequest $request): RedirectResponse
+    {
+        $homepage = Page::query()->where('name', 'home')->first();
+        $homepage->pre_heading = $request->preHeading;
+        $homepage->main_heading = $request->mainHeading;
+        $homepage->save();
+
+        return Redirect::route('homepage');
     }
 }

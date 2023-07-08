@@ -1,5 +1,5 @@
 <script setup>
-import { Head } from '@inertiajs/vue3';
+import { Head, useForm } from '@inertiajs/vue3';
 import MainLayout from "@/Layouts/MainLayout.vue";
 import EditPageButton from "@/Components/EditPageButton.vue";
 import { ref } from "vue";
@@ -8,15 +8,37 @@ import TextInput from "@/Components/TextInput.vue";
 import SecondaryButton from "@/Components/SecondaryButton.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 import InputLabel from "@/Components/InputLabel.vue";
+import InputError from "@/Components/InputError.vue";
 
-defineProps({
+const modalActive = ref(false);
+const mainHeadingInput = ref(null);
+
+const props = defineProps({
     pageData: {
         type: Object,
         required: true
     }
-});
+})
 
-const modalActive = ref(false);
+const form = useForm({
+    preHeading: props.pageData.pre_heading ?? '',
+    mainHeading: props.pageData.main_heading,
+})
+
+const submitForm = () => {
+    form.defaults();
+    form.patch(route('homepage.update'), {
+        preserveScroll: true,
+        onSuccess: () => closeModal(),
+        onError: () => mainHeadingInput.value.focus(),
+        onFinish: () => form.reset(),
+    });
+}
+
+const closeModal = () => {
+    modalActive.value = false;
+    form.reset();
+}
 </script>
 
 <template>
@@ -42,7 +64,7 @@ const modalActive = ref(false);
                 {{ pageData.main_heading }}
             </h1>
 
-            <Modal :show="modalActive" @close="modalActive = false">
+            <Modal :show="modalActive" @close="closeModal">
                 <h2 class="text-xl font-medium text-gray-900">
                     Edit Homepage
                 </h2>
@@ -54,46 +76,60 @@ const modalActive = ref(false);
                 </p>
 
                 <div class="mt-6">
-                    <InputLabel>Background Image</InputLabel>
-                    <TextInput
-                        model-value=""
-                        type="text"
-                        class="mt-1 block w-full"
-                    />
+                    <!--                    <InputLabel>Background Image</InputLabel>-->
+                    <!--                    <TextInput-->
+                    <!--                        model-value=""-->
+                    <!--                        type="text"-->
+                    <!--                        class="mt-1 block w-full"-->
+                    <!--                    />-->
                 </div>
 
                 <div class="mt-6">
-                    <InputLabel>
+                    <InputLabel for="preHeading">
                         Byline
                         <span class="text-gray-400 text-sm">
                             (Optional)
                         </span>
                     </InputLabel>
+
                     <TextInput
-                        model-value=""
+                        id="preHeading"
+                        v-model="form.preHeading"
                         type="text"
                         class="mt-1 block w-full"
+                        @keyup.enter="submitForm"
                     />
+
+                    <InputError :message="form.errors.preHeading" class="mt-2" />
                 </div>
 
                 <div class="mt-6">
-                    <InputLabel>Main Title</InputLabel>
+                    <InputLabel for="mainHeading" value="Main Title" />
+
                     <TextInput
-                        model-value=""
+                        id="mainHeading"
+                        ref="mainHeadingInput"
+                        v-model="form.mainHeading"
                         type="text"
                         class="mt-1 block w-full"
+                        @keyup.enter="submitForm"
                     />
+
+                    <InputError :message="form.errors.mainHeading" class="mt-2" />
                 </div>
 
                 <hr class="my-5">
 
                 <div class="flex justify-end gap-3">
-                    <SecondaryButton @click="modalActive = false">
+                    <SecondaryButton @click="closeModal">
                         Cancel
                     </SecondaryButton>
 
-                    <PrimaryButton>
-                        <!-- Use 'DeleteUserForm.vue' for button behavior -->
+                    <PrimaryButton
+                        :disabled="form.processing"
+                        :class="{ 'opacity-25': form.processing }"
+                        @click="submitForm"
+                    >
                         Save
                     </PrimaryButton>
                 </div>

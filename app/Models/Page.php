@@ -10,9 +10,9 @@ class Page extends Model
     use HasFactory;
 
     protected $fillable = [
-        'pre_title',
-        'title',
-        'description',
+        'pre_heading',
+        'main_heading',
+        'text_block',
         'featured_image',
         'etsy_url',
         'facebook_url',
